@@ -11,7 +11,7 @@ export const routes = [
     path: '/',
     component: Dashboard,
     meta: {
-      title: 'Dashboard'
+      title: 'Startship'
     }
   }, {
     path: '/post/:id',

@@ -7,14 +7,14 @@
         </el-form-item>
         </el-form>
         <el-row>
-        <el-col :span="100" v-for="startup in startups" :key="startup._id" :offset="index > 0 ? 2 : 0">
+        <el-col :span="100" v-for="startup in startups" :key="startup._id">
             <el-card :body-style="{ padding: '0px' }">
             <img src="http://via.placeholder.com/400x150" class="image">
             <div style="padding: 14px;">
                 <span>{{startup.name}}</span>
                 <div class="bottom clearfix">
                 <div class="time">{{startup.description.slice(0, 300)}}...</div>
-                <el-button type="text" class="button">Operating button</el-button>
+                <el-button type="text" class="button">Details</el-button>
                 </div>
             </div>
             </el-card>
@@ -70,3 +70,8 @@ export default {
     ]
 }
 </script>
+<style>
+    .container {
+        max-width: 100%!important;
+    }
+</style>
