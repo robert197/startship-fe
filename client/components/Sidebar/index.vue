@@ -4,24 +4,20 @@
         <div class="logo-container">
             <img class="logo" src="https://vuejs.org/images/logo.png" />
         </div>
-          <el-menu-item index="/">Dashboard</el-menu-item>
+          <el-menu-item index="/">Search</el-menu-item>
          <el-submenu index="1">
            <template slot="title">
-               Categories
+               Watchlist
            </template>
-           <el-menu-item-group title="JS Posts">
-             <el-menu-item index="/post/1">Post #1</el-menu-item>
-             <el-menu-item index="/post/2">Post #2</el-menu-item>
+           <el-menu-item-group title="Category 1">
+             <el-menu-item index="/post/1">Problem #1</el-menu-item>
+             <el-menu-item index="/post/2">Problem #2</el-menu-item>
            </el-menu-item-group>
-           <el-menu-item-group title="Python Posts">
-             <el-menu-item index="/post/3">Post #3</el-menu-item>
+           <el-menu-item-group title="Category 2">
+             <el-menu-item index="/post/3">Problem #3</el-menu-item>
            </el-menu-item-group>
-           <el-submenu index="1-4">
-             <template slot="title">Archived Posts</template>
-             <el-menu-item index="/post/4">Post #4</el-menu-item>
-           </el-submenu>
          </el-submenu>
-         <el-menu-item index="/about">About</el-menu-item>
+         <el-menu-item index="/about">News</el-menu-item>
        </el-menu>
    </div>
 </template>
