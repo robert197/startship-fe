@@ -6,6 +6,13 @@
             <el-button type="primary" icon="el-icon-search" v-on:click="search">Search</el-button>
         </el-form-item>
         </el-form>
+        <el-row v-if="startups.length > 0">
+            <h3 class="center-title">List of Startups</h3>
+        </el-row>
+        <el-row v-else>
+            <h3 class="center-title">No Startups found</h3>
+            <h3 class="center-title">...</h3>
+        </el-row>
         <el-row>
         <el-col :span="100" v-for="startup in startups" :key="startup._id">
             <el-card :body-style="{ padding: '0px' }">
@@ -90,5 +97,8 @@ export default {
 <style>
     .container {
         max-width: 100%!important;
+    }
+    .center-title {
+        text-align: center;
     }
 </style>
