@@ -2,7 +2,7 @@
     <div id="sidebar" :class="{'open': active}">
     <el-menu theme="light" router>
         <div class="logo-container">
-            <img class="logo" src="https://vuejs.org/images/logo.png" />
+            <img class="logo" src="image.png"/>
         </div>
           <el-menu-item index="/">Search</el-menu-item>
          <el-submenu index="1">

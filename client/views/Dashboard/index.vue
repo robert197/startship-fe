@@ -39,7 +39,13 @@ function getSearchedStartups(searchString) {
 export default {
   name: 'Dashboard',
   mounted() {
-      console.log(this.$router)
+      setTimeout(() => {
+        this.$notify({
+          title: 'Watchlist Updated',
+          message: 'A startup for your problem raised!',
+          type: 'success'
+        })
+      }, 7000)
   },
   data() {
       return {
@@ -68,9 +74,7 @@ export default {
       goToDetail(id) {
         this.$router.push('/detail/' + id)
       },
-    },
-    components: [
-    ]
+    }
 }
 </script>
 <style>

@@ -22,13 +22,11 @@ export default {
     }
   },
   mounted() {
-      console.log('asdad')
       fetch('http://localhost:8080/startup/' + this.startupId)
       .then((res) => {
           return res.json()
       })
       .then((data) => {
-          console.log(data)
           this.startup = data
       })
   }
