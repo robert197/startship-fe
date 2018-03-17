@@ -15,6 +15,10 @@
                 <div class="bottom clearfix">
                 <div class="time">{{startup.description.slice(0, 300)}}...</div>
                 <el-button type="text" class="button" v-on:click="goToDetail(startup._id)">Details</el-button>
+                <div class="block">
+                    <el-button><img src="ic_thumb_up_black_24px.svg"></img></el-button>
+                    <el-button><img src="ic_thumb_down_black_24px.svg"></img></el-button>
+                </div>
                 </div>
             </div>
             </el-card>
@@ -52,8 +56,14 @@ export default {
         form: {
           searchString: ''
         },
-        startups: []
+        startups: [],
+        rating: null
       }
+    },
+    watch: {
+        rating(val) {
+            console.log(val)
+        }
     },
     methods: {
       search() {
