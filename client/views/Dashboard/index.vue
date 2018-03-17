@@ -14,7 +14,7 @@
                 <span>{{startup.name}}</span>
                 <div class="bottom clearfix">
                 <div class="time">{{startup.description.slice(0, 300)}}...</div>
-                <el-button type="text" class="button">Details</el-button>
+                <el-button type="text" class="button" v-on:click="goToDetail(startup._id)">Details</el-button>
                 </div>
             </div>
             </el-card>
@@ -38,6 +38,9 @@ function getSearchedStartups(searchString) {
 }
 export default {
   name: 'Dashboard',
+  mounted() {
+      console.log(this.$router)
+  },
   data() {
       return {
         form: {
@@ -47,9 +50,6 @@ export default {
       }
     },
     methods: {
-      onSubmit() {
-        console.log('submit!');
-      },
       search() {
         if (!this.form.searchString) {
             getAllStartups()
@@ -64,7 +64,10 @@ export default {
             })
           }
 
-      }
+      },
+      goToDetail(id) {
+        this.$router.push('/detail/' + id)
+      },
     },
     components: [
     ]
