@@ -20,9 +20,9 @@
          <el-menu-item index="/about">News</el-menu-item>
 
         <div class="filters">
-            <el-checkbox @change="checkGdpr" v-model="gdpr">GDPR Conform</el-checkbox>
+            <el-checkbox style="margin-bottom: 2em" @change="checkGdpr" v-model="gdpr">GDPR Conform</el-checkbox>
 
-            <el-select placeholder="Technology">
+            <el-select style="margin-bottom: 2em" placeholder="Technology">
                 <el-option
                 v-for="item in options"
                 :key="item.value"
@@ -31,7 +31,7 @@
                 </el-option>
             </el-select>
 
-        <el-select placeholder="Sector">
+        <el-select style="margin-bottom: 2em" placeholder="Sector">
             <el-option
             v-for="item in options"
             :key="item.value"
@@ -40,7 +40,7 @@
             </el-option>
         </el-select>
 
-        <el-select placeholder="Country">
+        <el-select style="margin-bottom: 2em" placeholder="Country">
             <el-option
             v-for="item in options"
             :key="item.value"
@@ -49,7 +49,7 @@
             </el-option>
         </el-select>
 
-        <el-select placeholder="Funding Round">
+        <el-select style="margin-bottom: 2em" placeholder="Funding Round">
             <el-option
             v-for="item in options"
             :key="item.value"
@@ -58,7 +58,7 @@
             </el-option>
         </el-select>
 
-        <el-select placeholder="Maturity">
+        <el-select placeholder="Maturity" style="margin-bottom: 2em">
             <el-option
             v-for="item in options"
             :key="item.value"
@@ -67,7 +67,7 @@
             </el-option>
         </el-select>
 
-        <el-select placeholder="Giuristiction">
+        <el-select placeholder="Giuristiction" style="margin-bottom: 2em">
             <el-option
             v-for="item in options"
             :key="item.value"
@@ -76,7 +76,7 @@
             </el-option>
         </el-select>
 
-        <div class="block">
+        <div class="block" style="margin-bottom: 2em">
             <span class="demonstration">Age of Startup</span>
             <el-slider v-model="age"></el-slider>
         </div>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-form ref="form" :model="form" label-width="120px">
-            <el-input v-model="form.searchString"></el-input>
+            <el-input placeholder="Your problem..." v-model="form.searchString"></el-input>
             <div class="search-button">
                 <el-button type="primary" icon="el-icon-search" v-on:click="search">Search</el-button>
             </div>
