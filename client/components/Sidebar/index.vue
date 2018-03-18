@@ -20,7 +20,7 @@
          <el-menu-item index="/about">News</el-menu-item>
 
         <div class="filters">
-            <el-checkbox v-on:click="checkGdpr" v-model="value">GDPR Conform</el-checkbox>
+            <el-checkbox @change="checkGdpr" v-model="gdpr">GDPR Conform</el-checkbox>
 
             <el-select placeholder="Technology">
                 <el-option
@@ -86,18 +86,20 @@
         <el-radio v-model="radio" label="2">> 3</el-radio>
 
         </div>
-        {{gdprChecked}}
        </el-menu>
    </div>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import shared from 'store/shared'
 
 export default {
   name: 'Sidebar',
   props: ['active'],
-  // sharedState: this.store.state,
+  mounted() {
+      console.log(shared)
+  },
   data() {
       return {
           checked: false,
@@ -118,18 +120,16 @@ export default {
           label: 'Option5'
         }],
         age: 2,
-        radio: null
+        radio: null,
+        gdpr: false
       }
   },
   computed: {
-      ...mapState({
-        gdprChecked: state => {
-            return state.filters.gdprChecked
-        }
-    })
   },
   methods: {
-    ...mapActions(['checkGdpr'])
+    checkGdpr() {
+        shared.gdpr = this.gdpr
+    }
   },
 }
 </script>

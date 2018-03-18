@@ -54,8 +54,8 @@
             </el-tab-pane>
 
             <!-- Radar -->
-            <el-tab-pane label="Radar" name="Radar">
-
+            <el-tab-pane label="Radar" name="Radar" class="radar">
+                <img class="chart" src="chart.png"/>
             </el-tab-pane>
         </el-tabs>
     </div>
@@ -74,8 +74,12 @@ function getSearchedStartups(searchString) {
         return res.json()
     })
 }
+
+import shared from 'store/shared'
+
 export default {
   name: 'Dashboard',
+  sharedState: shared,
   mounted() {
       setTimeout(() => {
         this.$notify({
@@ -91,12 +95,22 @@ export default {
           searchString: ''
         },
         startups: [],
-        activeName: 'list'
+        activeName: 'list',
+        shared: shared
       }
     },
     watch: {
         rating(val) {
             console.log(val)
+        },
+        shared: {
+            handler(val) {
+                console.log(val.gdpr)
+                this.startups = this.startups.filter((startup) => {
+                    return startup.dataHost === val.gdpr
+                })
+            },
+            deep: true
         }
     },
     methods: {
@@ -173,5 +187,11 @@ export default {
     }
     .page-layout main .main-content {
         margin-top: 4em!important;
+    }
+    .chart {
+        width: 50em;
+    }
+    .radar {
+        text-align: center;
     }
 </style>
