@@ -1,12 +1,10 @@
 <template>
     <div>
         <el-form ref="form" :model="form" label-width="120px">
-        <el-form-item label="Problem">
             <el-input v-model="form.searchString"></el-input>
             <div class="search-button">
                 <el-button type="primary" icon="el-icon-search" v-on:click="search">Search</el-button>
             </div>
-        </el-form-item>
         </el-form>
         <el-tabs v-model="activeName" @tab-click="handleClick">
 
@@ -172,5 +170,8 @@ export default {
         input {
             border-radius: 50px;
         }
+    }
+    .page-layout main .main-content {
+        margin-top: 4em!important;
     }
 </style>

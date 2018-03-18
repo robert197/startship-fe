@@ -6,9 +6,11 @@
                 <i class="md-icon">menu</i>
             </el-button>
         </el-menu-item>
-        <span class="header-title">{{title}}</span>
+        <el-badge :value="3" class="item messages-button-wrapper">
+            <el-button class="messages-button" size="small">Messages</el-button>
+        </el-badge>
         <el-submenu class="header-menu" index="3">
-            <template slot="title">Workspace</template>
+            <template slot="title">Account</template>
                 <el-menu-item index="4-1">item one</el-menu-item>
                 <el-menu-item index="4-2">item two</el-menu-item>
                 <el-menu-item index="4-3">item three</el-menu-item>
@@ -28,4 +30,11 @@ export default {
 // You can import all your SCSS variables using webpack alias
 @import '~scss_vars';
 @import './style.scss';
+.messages-button {
+    background-color: transparent;
+    color: white;
+}
+.el-menu {
+    padding: 1em;
+}
 </style>
