@@ -90,7 +90,7 @@ export default {
           message: 'A startup for your problem raised!',
           type: 'success'
         })
-      }, 7000)
+      }, 9000)
   },
   data() {
       return {
