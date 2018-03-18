@@ -18,6 +18,8 @@
                     <h3 class="center-title">...</h3>
                 </el-row>
                 <el-row>
+                <transition-group name="list">
+
                 <el-col :span="100" v-for="startup in startups" :key="startup._id">
                     <el-card :body-style="{ padding: '0px' }">
                     <img :src="startup.logo" class="image">
@@ -50,6 +52,7 @@
                     </div>
                 </el-card>
             </el-col>
+            </transition-group>
             </el-row>
             </el-tab-pane>
 
@@ -193,5 +196,19 @@ export default {
     }
     .radar {
         text-align: center;
+    }
+    .list-item {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .list-enter-active, .list-leave-active {
+        transition: all .6s;
+    }
+    .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+        opacity: .2;
+        transform: translateY(30px);
+    }
+    .el-card {
+        margin-bottom: 2em;
     }
 </style>
