@@ -43,7 +43,7 @@
                             <el-button size="mini" class="thumbs-button"><img src="ic_thumb_down_black_24px.svg"></img></el-button>
                             <el-button size="mini" class="thumbs-button"><img src="ic_chat_black_24px.svg"></img></el-button>
                             <div class="score">
-                                <h3>94</h3>
+                                <h3>Fit: 90%</h3>
                             </div>
                         </div>
                         </div>
