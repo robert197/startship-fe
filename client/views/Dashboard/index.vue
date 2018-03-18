@@ -6,31 +6,40 @@
             <el-button type="primary" icon="el-icon-search" v-on:click="search">Search</el-button>
         </el-form-item>
         </el-form>
-        <el-row v-if="startups.length > 0">
-            <h3 class="center-title">List of Startups</h3>
-        </el-row>
-        <el-row v-else>
-            <h3 class="center-title">No Startups found</h3>
-            <h3 class="center-title">...</h3>
-        </el-row>
-        <el-row>
-        <el-col :span="100" v-for="startup in startups" :key="startup._id">
-            <el-card :body-style="{ padding: '0px' }">
-            <img src="http://via.placeholder.com/400x150" class="image">
-            <div style="padding: 14px;">
-                <span>{{startup.name}}</span>
-                <div class="bottom clearfix">
-                <div class="time">{{startup.description.slice(0, 300)}}...</div>
-                <el-button type="text" class="button" v-on:click="goToDetail(startup._id)">Details</el-button>
-                <div class="block">
-                    <el-button><img src="ic_thumb_up_black_24px.svg"></img></el-button>
-                    <el-button><img src="ic_thumb_down_black_24px.svg"></img></el-button>
-                </div>
-                </div>
-            </div>
-            </el-card>
-        </el-col>
-        </el-row>
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+
+            <!-- List -->
+            <el-tab-pane label="List" name="list">
+                <el-row v-if="startups.length > 0">
+                    <h3 class="center-title">List of Startups</h3>
+                </el-row>
+                <el-row v-else>
+                    <h3 class="center-title">No Startups found</h3>
+                    <h3 class="center-title">...</h3>
+                </el-row>
+                <el-row>
+                <el-col :span="100" v-for="startup in startups" :key="startup._id">
+                    <el-card :body-style="{ padding: '0px' }">
+                    <img :src="startup.logo" class="image">
+                    <div style="padding: 14px;">
+                        <span>{{startup.name}}</span>
+                        <div class="bottom clearfix">
+                        <div class="time">{{startup.description.slice(0, 300)}}...</div>
+                        <el-button type="text" class="button" v-on:click="goToDetail(startup._id)">Details</el-button>
+                        <div class="block">
+                            <el-button><img src="ic_thumb_up_black_24px.svg"></img></el-button>
+                            <el-button><img src="ic_thumb_down_black_24px.svg"></img></el-button>
+                        </div>
+                        </div>
+                    </div>
+                </el-card>
+            </el-col>
+            </el-row>
+            </el-tab-pane>
+
+            <!-- Radar -->
+            <el-tab-pane label="Radar" name="Radar">Radar</el-tab-pane>
+        </el-tabs>
     </div>
 </template>
 <script>
@@ -64,7 +73,7 @@ export default {
           searchString: ''
         },
         startups: [],
-        rating: null
+        activeName: 'list'
       }
     },
     watch: {
@@ -91,6 +100,9 @@ export default {
       goToDetail(id) {
         this.$router.push('/detail/' + id)
       },
+      handleClick(tab, event) {
+        console.log(tab, event);
+      }
     }
 }
 </script>
@@ -100,5 +112,9 @@ export default {
     }
     .center-title {
         text-align: center;
+    }
+    .image {
+        width: 5em;
+        height: 5em;
     }
 </style>
