@@ -3,7 +3,9 @@
         <el-form ref="form" :model="form" label-width="120px">
         <el-form-item label="Problem">
             <el-input v-model="form.searchString"></el-input>
-            <el-button type="primary" icon="el-icon-search" v-on:click="search">Search</el-button>
+            <div class="search-button">
+                <el-button type="primary" icon="el-icon-search" v-on:click="search">Search</el-button>
+            </div>
         </el-form-item>
         </el-form>
         <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -21,14 +23,30 @@
                 <el-col :span="100" v-for="startup in startups" :key="startup._id">
                     <el-card :body-style="{ padding: '0px' }">
                     <img :src="startup.logo" class="image">
-                    <div style="padding: 14px;">
-                        <span>{{startup.name}}</span>
+                    <div class="category"><b>Category:</b> {{startup.category}}</div>
+                    <div style="padding: 15px;">
+                        <h2>{{startup.name}}</h2>
                         <div class="bottom clearfix">
                         <div class="time">{{startup.description.slice(0, 300)}}...</div>
+                        <el-collapse accordion>
+                            <el-collapse-item name="1">
+                                <div>Age: {{startup.age}}</div>
+                                <div>Website: <a :href="startup.link">{{startup.link}}</a></div>
+                                <div>Country: {{startup.country}}</div>
+                                <div>City: {{startup.city}}</div>
+                                <div>Partnerships: {{startup.partnerships}}</div>
+                                <div>Patents: {{startup.patents}}</div>
+                                <div>Technology: {{startup.technology}}</div>
+                            </el-collapse-item>
+                        </el-collapse>
                         <el-button type="text" class="button" v-on:click="goToDetail(startup._id)">Details</el-button>
                         <div class="block">
-                            <el-button><img src="ic_thumb_up_black_24px.svg"></img></el-button>
-                            <el-button><img src="ic_thumb_down_black_24px.svg"></img></el-button>
+                            <el-button size="mini" class="thumbs-button"><img src="ic_thumb_up_black_24px.svg"></img></el-button>
+                            <el-button size="mini" class="thumbs-button"><img src="ic_thumb_down_black_24px.svg"></img></el-button>
+                            <el-button size="mini" class="thumbs-button"><img src="ic_chat_black_24px.svg"></img></el-button>
+                            <div class="score">
+                                <h3>94</h3>
+                            </div>
                         </div>
                         </div>
                     </div>
@@ -38,7 +56,9 @@
             </el-tab-pane>
 
             <!-- Radar -->
-            <el-tab-pane label="Radar" name="Radar">Radar</el-tab-pane>
+            <el-tab-pane label="Radar" name="Radar">
+
+            </el-tab-pane>
         </el-tabs>
     </div>
 </template>
@@ -106,7 +126,7 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="scss">
     .container {
         max-width: 100%!important;
     }
@@ -116,5 +136,41 @@ export default {
     .image {
         width: 5em;
         height: 5em;
+    }
+    .el-collapse {
+        border: none;
+    }
+    .el-collapse-item__header {
+        border: none;
+        text-align: right;
+    }
+    .thumbs-button {
+        border-radius: 50px;
+        img {
+            opacity: 0.5;
+        }
+    }
+    .score {
+        display: inline-block;
+        float: right;
+    }
+    .category {
+        display: inline-block;
+        float: right;
+        padding: 2em;
+    }
+    .search-button {
+        width: 100%;
+        text-align: center;
+        button {
+            margin-top: 1em;
+            box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+            border-radius: 40px;
+        }
+    }
+    .el-input {
+        input {
+            border-radius: 50px;
+        }
     }
 </style>
