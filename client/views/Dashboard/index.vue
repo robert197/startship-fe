@@ -103,15 +103,16 @@ export default {
       }
     },
     watch: {
-        rating(val) {
-            console.log(val)
-        },
         shared: {
             handler(val) {
-                console.log(val.gdpr)
-                this.startups = this.startups.filter((startup) => {
-                    return startup.dataHost === val.gdpr
-                })
+                if (val.gdpr) {
+                    this.startups = this.startups.filter((startup) => {
+                        return startup.dataHost === val.gdpr
+                    })
+                } else {
+                    this.search()
+                }
+
             },
             deep: true
         }
