@@ -20,7 +20,6 @@
 import Header from 'components/Header'
 import Sidebar from 'components/Sidebar'
 import Dimmer from 'components/Dimmer'
-import Startups from 'components/Startups'
 
 import { mapActions, mapState } from 'vuex'
 
@@ -45,8 +44,7 @@ export default {
   components: {
     'header-component': Header,
     'sidebar-component': Sidebar,
-    Dimmer,
-    Startups
+    Dimmer
   },
   created: function () {
     window.addEventListener('resize', this.handleResize)

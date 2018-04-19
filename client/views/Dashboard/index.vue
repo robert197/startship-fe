@@ -1,7 +1,15 @@
 <template>
     <div>
         <el-form ref="form" :model="form" label-width="120px">
-            <el-input placeholder="Your problem..." v-model="form.searchString"></el-input>
+            <el-autocomplete
+                :value-key="'text'"
+                trigger-on-focus="false"
+                v-model="form.searchString"
+                :fetch-suggestions="suggest"
+                placeholder="Your problem..."
+                @select="handleSelect"
+                :trigger-on-focus="false"
+            ></el-autocomplete>
             <div class="search-button">
                 <el-button type="primary" icon="el-icon-search" v-on:click="search">Search</el-button>
             </div>
@@ -20,7 +28,7 @@
                 <el-row>
                 <transition-group name="list">
 
-                <el-col :span="100" v-for="startup in startups" :key="startup._id">
+                <el-col :span="100" v-for="startup in startups" :key="startup.name">
                     <el-card :body-style="{ padding: '0px' }">
                     <img :src="startup.logo" class="image">
                     <div class="category"><b>Category:</b> {{startup.category}}</div>
@@ -45,7 +53,7 @@
                             <el-button size="mini" class="thumbs-button"><img src="ic_thumb_down_black_24px.svg"></img></el-button>
                             <el-button size="mini" class="thumbs-button"><img src="ic_chat_black_24px.svg"></img></el-button>
                             <div class="score">
-                                <h3>Fit: 90%</h3>
+                                <h3>{{ startup.score }}</h3>
                             </div>
                         </div>
                         </div>
@@ -66,16 +74,17 @@
 <script>
 function getAllStartups() {
     return fetch('http://localhost:8080/startup')
-    .then((res) => {
-        return res.json()
-    })
+    .then(res => res.json())
 }
 
 function getSearchedStartups(searchString) {
     return fetch('http://localhost:8080/startup?search=' + searchString)
-    .then((res) => {
-        return res.json()
-    })
+    .then(res => res.json())
+}
+
+function getSuggestedKeywords(searchString) {
+    return fetch('http://localhost:8080/startup/suggest?search=' + searchString)
+    .then(res => res.json())
 }
 
 import shared from 'store/shared'
@@ -102,32 +111,32 @@ export default {
         shared: shared
       }
     },
-    watch: {
-        shared: {
-            handler(val) {
-                if (val.gdpr) {
-                    this.startups = this.startups.filter((startup) => {
-                        return startup.dataHost === val.gdpr
-                    })
-                } else {
-                    this.search()
-                }
-
-            },
-            deep: true
-        }
-    },
     methods: {
+      handleSelect() {
+
+      },
+      suggest(searchString, cb) {
+          if(searchString.length < 2) {
+              cb([])
+          } else {
+            getSuggestedKeywords(searchString)
+            .then(data => {
+                // cb(data)
+                cb(data.map(suggest => ({ value: suggest.text })))
+            })
+          }
+      },
       search() {
         if (!this.form.searchString) {
             getAllStartups()
             .then((data) => {
-                console.log(data)
+                // console.log(data)
                 this.startups = data
             })
         } else {
             getSearchedStartups(this.form.searchString)
             .then((data) => {
+              // console.log(data)
               this.startups = data
             })
           }
@@ -184,7 +193,8 @@ export default {
             border-radius: 40px;
         }
     }
-    .el-input {
+    .el-input, .el-autocomplete {
+        width: 100%;
         input {
             border-radius: 50px;
         }

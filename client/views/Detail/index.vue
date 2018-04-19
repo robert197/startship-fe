@@ -12,8 +12,6 @@
             <hr>
         </div>
     </el-card>
-
-
 </div>
 </template>
 
