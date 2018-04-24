@@ -11,12 +11,12 @@
     "generate_default_styles": "et -i ./client/styles/element-variables.css",
     "generate_theme": "et -c ./client/styles/element-variables.css"
   },
-  "author": "Vladimir Metnev <vladimirmetnew@gmail.com>",
+  "author": "Robert Pupel <robert.p1991@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "babel-runtime": "^6.23.0",
     "devextreme": "17.2.6",
-    "element-ui": "^1.2.9",
+    "element-ui": "2.3.6",
     "jquery": "3.3.1",
     "material-design-icons": "^3.0.1",
     "normalize.css": "^6.0.0",

@@ -1,14 +1,11 @@
 <template>
 <header>
-    <el-menu theme="dark" mode="horizontal">
+    <el-menu mode="horizontal">
         <el-menu-item class="header-navicon" index="1">
             <el-button type="text" @click="openSidebar">
                 <i class="md-icon">menu</i>
             </el-button>
         </el-menu-item>
-        <el-badge :value="3" class="item messages-button-wrapper">
-            <el-button class="messages-button" size="small">Messages</el-button>
-        </el-badge>
         <el-submenu class="header-menu" index="3">
             <template slot="title">Account</template>
                 <el-menu-item index="4-1">item one</el-menu-item>

@@ -2,14 +2,20 @@
     <div>
         <el-form ref="form" :model="form" label-width="120px">
             <el-autocomplete
-                :value-key="'text'"
-                trigger-on-focus="false"
+                popper-class="my-autocomplete"
                 v-model="form.searchString"
                 :fetch-suggestions="suggest"
                 placeholder="Your problem..."
                 @select="handleSelect"
                 :trigger-on-focus="false"
-            ></el-autocomplete>
+            >
+            <template scope="{ item }">
+                <div v-if="item.type === 'term'">
+                    <span class="do-you-mean-text">Do you mean... </span>
+                </div>
+                <div class="value">{{ item.value.toLowerCase() }}</div>
+            </template>
+            </el-autocomplete>
             <div class="search-button">
                 <el-button type="primary" icon="el-icon-search" v-on:click="search">Search</el-button>
             </div>
@@ -121,8 +127,9 @@ export default {
           } else {
             getSuggestedKeywords(searchString)
             .then(data => {
-                // cb(data)
-                cb(data.map(suggest => ({ value: suggest.text })))
+                const completions = data.completionSuggest.map(suggest => ({ value: suggest.text, type: 'completion' }))
+                const terms = data.termSuggest.map(suggest => ({ value: suggest.text, type: 'term' }))
+                cb(completions.concat(terms))
             })
           }
       },
@@ -152,6 +159,11 @@ export default {
 }
 </script>
 <style lang="scss">
+    .do-you-mean-text {
+        opacity: 0.5;
+        padding: 0;
+        margin: 0;
+    }
     .container {
         max-width: 100%!important;
     }
